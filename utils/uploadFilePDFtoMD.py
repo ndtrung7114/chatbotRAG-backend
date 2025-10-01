@@ -132,13 +132,13 @@ def convert_pdf_to_md(pdf_path: str) -> str:
 
     # Save paper to file md
     # Extract the file name from the full file path
-    file_name = Path(pdf_path).stem + ".pdf"  # Use stem + .pdf to match original basename logic
-    os.makedirs("../data", exist_ok=True)
-
-    # Save the file in the 'data' folder with the extracted file name
-    output_path = f"data/{file_name}.md"
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(md)
+    # file_name = Path(pdf_path).stem + ".pdf"  # Use stem + .pdf to match original basename logic
+    # os.makedirs("../data", exist_ok=True)
+    #
+    # # Save the file in the 'data' folder with the extracted file name
+    # output_path = f"data/{file_name}.md"
+    # with open(output_path, "w", encoding="utf-8") as f:
+    #     f.write(md)
     return md
 
 if __name__ == "__main__":
