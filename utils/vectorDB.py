@@ -20,6 +20,7 @@ if index_name not in pc.list_indexes().names():
     )
 
 def create_retriever(chunks, embeddings):
+    pc.Index(index_name).delete(delete_all=True)
     vector_store = PineconeVectorStore.from_documents(
         chunks, embeddings, index_name=index_name
     )
