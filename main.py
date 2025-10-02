@@ -23,7 +23,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-MiniLM-L2-v2")
+embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-MiniLM-L12-v2")
 
 @app.post("/uploadfile/")
 async def upload_file(file: UploadFile = File(...)):
@@ -56,6 +56,4 @@ async def query(request: QueryRequest):
         return {"question": request.question, "answer": answer}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", 8000)))
+
