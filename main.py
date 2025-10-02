@@ -23,7 +23,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-MiniLM-L3-v2")
+embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-MiniLM-L2-v2")
 
 @app.post("/uploadfile/")
 async def upload_file(file: UploadFile = File(...)):
