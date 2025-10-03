@@ -1,13 +1,12 @@
 ---
-title: RAG Chatbot Backend
-emoji: 🤖
-colorFrom: blue
-colorTo: purple
+title: FastAPI Backend ChatbotRAG
+emoji: 💻
+colorFrom: purple
+colorTo: yellow
 sdk: docker
 pinned: false
+license: mit
+short_description: This is backend of chatbotRAG project
 ---
 
-# RAG Chatbot Backend
-
-This is the FastAPI backend for my RAG chatbot.  
-It processes PDFs, stores embeddings in Pinecone, and answers queries using Groq + Gemini.
+Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
