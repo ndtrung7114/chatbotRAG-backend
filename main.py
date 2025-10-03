@@ -5,7 +5,8 @@ from dotenv import load_dotenv
 from utils.uploadFilePDFtoMD import convert_pdf_to_md
 from utils.vectorDB import create_retriever, load_retriever
 from utils.chunking import split_text_by_markdown
-from langchain_community.embeddings import HuggingFaceEmbeddings
+# from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from utils.llm import ask_question
 from pydantic import BaseModel
 
@@ -23,7 +24,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-MiniLM-L12-v2")
+embeddings = GoogleGenerativeAIEmbeddings(model="gemini-embedding-001", api_key=os.getenv("GOOGLE_API_KEY"))
 
 @app.post("/uploadfile/")
 async def upload_file(file: UploadFile = File(...)):
@@ -41,6 +42,7 @@ async def upload_file(file: UploadFile = File(...)):
         md = convert_pdf_to_md(temp_path)
         chunks = split_text_by_markdown(md)
         retriever = create_retriever(chunks, embeddings)
+        # Clean up temp file
         os.remove(temp_path)
         return {"message": "File processed and vector store created successfully."}
     except Exception as e:
